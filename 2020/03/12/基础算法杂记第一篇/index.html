@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>基础算法杂记第一篇 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文是基础算法系列第一篇文章。文中包含7个算法实现，大部分题目出自剑指offer，难度都是偏简单的题型，但也有一些有意思的思路在其中。  JDK中实现的二分查找算法   除以二以右移1位代替 下标的变化处理放在前面，分支的判断放在后面  12345678910111213141516171819&#x2F;&#x2F; 该方法为私有方法，是内部调用，故没有边界检查private static in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础算法杂记第一篇">
+<meta property="og:url" content="http://yoursite.com/2020/03/12/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E6%9D%82%E8%AE%B0%E7%AC%AC%E4%B8%80%E7%AF%87/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文是基础算法系列第一篇文章。文中包含7个算法实现，大部分题目出自剑指offer，难度都是偏简单的题型，但也有一些有意思的思路在其中。  JDK中实现的二分查找算法   除以二以右移1位代替 下标的变化处理放在前面，分支的判断放在后面  12345678910111213141516171819&#x2F;&#x2F; 该方法为私有方法，是内部调用，故没有边界检查private static in">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-12T13:26:13.432Z">
+<meta property="article:modified_time" content="2020-03-12T13:26:13.482Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-基础算法杂记第一篇" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/12/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E6%9D%82%E8%AE%B0%E7%AC%AC%E4%B8%80%E7%AF%87/" class="article-date">
+  <time datetime="2020-03-12T13:26:13.432Z" itemprop="datePublished">2020-03-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基础算法杂记第一篇
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文是基础算法系列第一篇文章。文中包含7个算法实现，大部分题目出自剑指offer，难度都是偏简单的题型，但也有一些有意思的思路在其中。</p>
+<ol>
+<li>JDK中实现的二分查找算法</li>
+</ol>
+<ul>
+<li>除以二以右移1位代替</li>
+<li>下标的变化处理放在前面，分支的判断放在后面</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 该方法为私有方法，是内部调用，故没有边界检查</span><br><span class="line">private static int binarySearch0(int[] a, int fromIndex, int toIndex,</span><br><span class="line">                                 int key) &#123;</span><br><span class="line">    int low &#x3D; fromIndex;</span><br><span class="line">    int high &#x3D; toIndex - 1;</span><br><span class="line"></span><br><span class="line">    while (low &lt;&#x3D; high) &#123;</span><br><span class="line">        int mid &#x3D; (low + high) &gt;&gt;&gt; 1;</span><br><span class="line">        int midVal &#x3D; a[mid];</span><br><span class="line"></span><br><span class="line">        if (midVal &lt; key)</span><br><span class="line">            low &#x3D; mid + 1;</span><br><span class="line">        else if (midVal &gt; key)</span><br><span class="line">            high &#x3D; mid - 1;</span><br><span class="line">        else</span><br><span class="line">            return mid; &#x2F;&#x2F; key found</span><br><span class="line">    &#125;</span><br><span class="line">    return -(low + 1);  &#x2F;&#x2F; key not found.</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<ol start="2">
+<li>建立二叉树<br>输入一个层序遍历的结果数组，输出一个二叉树的根节点。若节点为空，则数组中使用Integer.MAX_VALUE表示。</li>
+</ol>
+<ul>
+<li>使用递归的方法实现。</li>
+<li>新建一个递归函数，传递下标的做法很典型。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public static TreeNode buildUpTree(int[] arr) &#123;</span><br><span class="line">    TreeNode root &#x3D; buildUpTree(arr, 0);</span><br><span class="line">    return root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private static TreeNode buildUpTree(int[] arr, int i) &#123;</span><br><span class="line">    TreeNode cur;</span><br><span class="line"></span><br><span class="line">    if (i &lt; arr.length) &#123;</span><br><span class="line">        if (arr[i] &#x3D;&#x3D; Integer.MAX_VALUE)</span><br><span class="line">            return null;</span><br><span class="line">        cur &#x3D; new TreeNode(arr[i]);</span><br><span class="line">        cur.left &#x3D; buildUpTree(arr, 2 * i + 1);</span><br><span class="line">        cur.right &#x3D; buildUpTree(arr, 2 * i + 2);</span><br><span class="line">        return cur;</span><br><span class="line">    &#125;</span><br><span class="line">    return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<ol start="3">
+<li>面试题21：调整数组顺序使奇数位于偶数前面</li>
+</ol>
+<ul>
+<li>只需要一层循环，且在最外层规定循环条件。</li>
+<li>如果满足条件，直接continue进入下一个。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public static int[] exchange(int[] nums) &#123;</span><br><span class="line">        int i &#x3D; 0, j &#x3D; nums.length - 1;  &#x2F;&#x2F; two pointers</span><br><span class="line">        int tmp;</span><br><span class="line">        while (i &lt; j &amp;&amp; i &lt; nums.length - 1) &#123;</span><br><span class="line">            if (nums[i] % 2 &#x3D;&#x3D; 1) &#123; &#x2F;&#x2F; 如果nums[i]是个奇数，则忽略</span><br><span class="line">                i++;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            if (nums[j] % 2 &#x3D;&#x3D; 0) &#123; &#x2F;&#x2F; 如果nums[j]是个偶数，则忽略</span><br><span class="line">                j--;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            tmp &#x3D; nums[i];</span><br><span class="line">            nums[i] &#x3D; nums[j];</span><br><span class="line">            nums[j] &#x3D; tmp;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        return nums;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<ol start="4">
+<li>面试题52：两个链表节点的第一个公共节点</li>
+</ol>
+<p>做法一：Set保存一个链表的节点，然后用另一个链表的节点循环核实。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public ListNode getIntersectionNode(ListNode headA, ListNode headB) &#123;</span><br><span class="line">        HashSet&lt;ListNode&gt; set &#x3D; new HashSet&lt;&gt;();</span><br><span class="line">        while (headA !&#x3D; null) &#123;</span><br><span class="line">            set.add(headA);</span><br><span class="line">            headA &#x3D; headA.next;</span><br><span class="line">        &#125;</span><br><span class="line">        while(headB !&#x3D; null) &#123;</span><br><span class="line">            if(set.contains(headB)) &#123;</span><br><span class="line">                return headB;</span><br><span class="line">            &#125;</span><br><span class="line">            headB &#x3D; headB.next;</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>做法二：双指针法的做法很有意思，其中涉及了一个数学关系：A’ + R = A ; B’ + R = B ; A’ + R + B’ = A + B’ = A’ + B ; 其中 R 是重复部分。A‘ 和 B’ 是各链表的开头不重复的部分。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public ListNode getIntersectionNode_2pointers(ListNode headA, ListNode headB) &#123;</span><br><span class="line">       if (headA &#x3D;&#x3D; null || headB &#x3D;&#x3D; null) return null;</span><br><span class="line">       ListNode pA &#x3D; headA, pB &#x3D; headB;</span><br><span class="line">       while (pA !&#x3D; pB) &#123;</span><br><span class="line">           if (pA &#x3D;&#x3D; null)</span><br><span class="line">               pA &#x3D; headB;</span><br><span class="line">           else</span><br><span class="line">               pA &#x3D; pA.next;</span><br><span class="line">           if (pB &#x3D;&#x3D; null)</span><br><span class="line">               pB &#x3D; headA;</span><br><span class="line">           else</span><br><span class="line">               pB &#x3D; pB.next;</span><br><span class="line">       &#125;</span><br><span class="line">       return pA;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<ol start="5">
+<li>面试题15：二进制中1的个数</li>
+</ol>
+<ul>
+<li>按位与操作，和1相与。操作符为&amp;</li>
+<li>右移操作，操作符为&gt;&gt;=</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public static int hammingWeight(int n) &#123;</span><br><span class="line">        int count &#x3D; 0;</span><br><span class="line">        while (n &gt; 0) &#123;</span><br><span class="line">            if ((n &amp; 1) &#x3D;&#x3D; 1)</span><br><span class="line">                count++;</span><br><span class="line">            n &gt;&gt;&#x3D; 1; &#x2F;&#x2F; 左边的用原有标志位补充，右边超出的部分舍弃。</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>6.1 面试题06：从头到尾打印链表</p>
+<p>看到逆序输出，第一反应就是栈。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public int[] reversePrint(ListNode head) &#123;</span><br><span class="line">       &#x2F;&#x2F; use stack</span><br><span class="line">       Stack&lt;ListNode&gt; stack &#x3D; new Stack&lt;&gt;();</span><br><span class="line">       while (head !&#x3D; null) &#123;</span><br><span class="line">           stack.push(head);</span><br><span class="line">           head &#x3D; head.next;</span><br><span class="line">       &#125;</span><br><span class="line">       int[] result &#x3D; new int[stack.size()];</span><br><span class="line">       int index &#x3D; 0;</span><br><span class="line">       while (!stack.isEmpty()) &#123;</span><br><span class="line">           result[index] &#x3D; stack.pop().val;</span><br><span class="line">           index++;</span><br><span class="line">       &#125;</span><br><span class="line">       return result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>6.2 面试题24：反转链表</p>
+<ul>
+<li>如果从栈中取出直接用，那么会保留原来的指针</li>
+<li>因此也可以这样写：先把取出节点的后继置为空，然后再加入新的链表</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public static ListNode reverseList(ListNode head) &#123;</span><br><span class="line">       if(head &#x3D;&#x3D; null)</span><br><span class="line">           return head;</span><br><span class="line">       &#x2F;&#x2F; use stack</span><br><span class="line">       Stack&lt;ListNode&gt; stack &#x3D; new Stack&lt;&gt;();</span><br><span class="line">       while (head !&#x3D; null) &#123;</span><br><span class="line">           stack.push(head);</span><br><span class="line">           head &#x3D; head.next;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       head &#x3D; stack.pop();</span><br><span class="line">       ListNode cur &#x3D; head;</span><br><span class="line"></span><br><span class="line">       while (!stack.isEmpty()) &#123;</span><br><span class="line">           &#x2F;&#x2F; 如果从栈中取出直接用，那么会保留原来的指针</span><br><span class="line">           cur.next &#x3D; new ListNode(stack.pop().val); </span><br><span class="line">           &#x2F;&#x2F; 因此也可以这样写：先把取出节点的后继置为空，然后再加入新的链表</span><br><span class="line">           &#x2F;&#x2F; stack.peek().next &#x3D; null; </span><br><span class="line">           &#x2F;&#x2F; cur.next &#x3D; stack.pop();</span><br><span class="line">           cur &#x3D; cur.next;</span><br><span class="line">       &#125;</span><br><span class="line">       return head;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/12/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E6%9D%82%E8%AE%B0%E7%AC%AC%E4%B8%80%E7%AF%87/" data-id="ck7osjkpz00017svlciqcfise" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/12/March10%E6%9D%82%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          March10杂记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/08/%E6%B5%85%E8%B0%88%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84DFS%E5%92%8CBFS/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">我的第一篇博客</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/" rel="tag">树的遍历</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/" style="font-size: 10px;">树的遍历</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/12/%E6%B5%85%E8%B0%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%AD%E9%82%A3%E4%BA%9B%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E6%A6%82%E5%BF%B5/">浅谈数据结构中那些容易混淆的概念</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/12/March10%E6%9D%82%E8%AE%B0/">March10杂记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/12/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E6%9D%82%E8%AE%B0%E7%AC%AC%E4%B8%80%E7%AF%87/">基础算法杂记第一篇</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/08/%E6%B5%85%E8%B0%88%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84DFS%E5%92%8CBFS/">我的第一篇博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

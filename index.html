@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-浅谈数据结构中那些容易混淆的概念" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/12/%E6%B5%85%E8%B0%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%AD%E9%82%A3%E4%BA%9B%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E6%A6%82%E5%BF%B5/" class="article-date">
+  <time datetime="2020-03-12T13:26:13.541Z" itemprop="datePublished">2020-03-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/12/%E6%B5%85%E8%B0%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%AD%E9%82%A3%E4%BA%9B%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E6%A6%82%E5%BF%B5/">浅谈数据结构中那些容易混淆的概念</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文旨在记录笔者发觉的计算机科学中容易混淆的数据结构和概念，希望对读者也有所帮助。</p>
+<p>每种数据结构都有自己独特的应用场景和适用范围，并没有可以通吃一切的数据结构。</p>
+<h3 id="二叉树和自平衡二叉树"><a href="#二叉树和自平衡二叉树" class="headerlink" title="二叉树和自平衡二叉树"></a>二叉树和自平衡二叉树</h3><p>你知道BST和AVL最本质的区别吗?</p>
+<p>观察维基百科对树的分类，笔者发现了一个有意思的地方，维基百科将树分为二叉树、自平衡二叉查找树、B树、堆、Trie树，还有一些我不太熟悉的树种。其中，二叉树又包含二叉查找树BST，自平衡二叉查找树包含AVL树、红黑树等。二叉树和自平衡二叉树两者的区别是什么呢？</p>
+<p>二叉树的关注点往往是它的遍历方式、存储方式，而自平衡二叉树往往更注重它的操作，比如旋转、插入、删除、查询前驱、查询后继等。其中，平衡二叉树又叫AVL树，是最早被发明的自平衡二叉查找树。该树的名称来源于该数据结构的两位发明人的名称首字母缩写。而红黑树具有最好的最坏情况运行时间，故在实践中经常被用到。</p>
+<pre><code>二叉排序树是指一棵空树，或是具有这样性质的二叉树：
+1. 若左子树非空，则左子树上的所有节点值均小于其根节点
+2. 若右子树非空，则右子树上的所有节点值均大于其根节点
+3. 左右子树也分别递归满足1和2条件</code></pre><p>注意此处并没有规定平衡性，只强调了节点值的大小比较。所以，二叉排序树并不需要是平衡的，因此它的查找性能也未必能够得到保证。</p>
+<p>换句话说，在实践中常用的往往是自平衡的二叉树，因为它们的平均性能和最坏性能更好，而二叉树，包括BST，往往只停留在理论研究的水平。</p>
+<h3 id="B树"><a href="#B树" class="headerlink" title="B树"></a>B树</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/12/%E6%B5%85%E8%B0%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%AD%E9%82%A3%E4%BA%9B%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E6%A6%82%E5%BF%B5/" data-id="ck7osjkq100037svldf4vefft" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-March10杂记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/12/March10%E6%9D%82%E8%AE%B0/" class="article-date">
+  <time datetime="2020-03-12T13:26:13.434Z" itemprop="datePublished">2020-03-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/12/March10%E6%9D%82%E8%AE%B0/">March10杂记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>刚把手机VPN配置好了，觉得有点小成就感。顺便记录下上周字节跳动二面的一小段回忆。</p>
+<p>前几天与字节跳动的面试官的一段对话对我产生了深远的影响。摘录如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">我：为什么面试要考算法呢？</span><br><span class="line">面试官：你觉得呢？</span><br><span class="line">我：我之前问过另一个面试官，他的意思是，算法是一个筛人的方法，因为人太多了。</span><br><span class="line">面试官：（感觉不太认同的样子）我的观点和他有点不同。出一道算法题其实是在观察你如何解决一个问题，或者是难题。因为我们的实际工作中就是在不停地解决问题。</span><br></pre></td></tr></table></figure>
+
+<p>事后，我回味他的回答，觉得说得很好，但也容易被反驳。</p>
+<p>算法，我觉得更像是一种套路的积累，是需要刻意练习的。反复做自己已经掌握了的点，对水平并无增长。学会现成的、证明有用的套路，在面试的时候展现出来即可。</p>
+<p>但也存在另一种情况，那就是这道题你还真没碰到过。出现这种情况，往往是因为你积累得还不够多，或者说不全面。在这种情况下，就真的是查看你解决难题的能力了。</p>
+<p>总是从简单的例子开始，逐步扩大，观察规律。比如我这次被问到的“集合的子集问题”，我当时想到的是用递归来做。事后去看题解确实也可以用递归来解，但当时不知怎么一紧张，思路没有出来。所以真的需要提醒自己，从简单的例子开始，总结规律。</p>
+<p>不过面试的时候，往往只会有极短的思考时间。因此，真的是功夫在平时。</p>
+<p>说回手机VPN的事情。我购买的服务本身就支持多台设备，但因为国区这里的SSR软件都被墙了，所以就没有那么straightforward的方法，之前就放弃了。但今天忽然就有了干劲想搞一波。</p>
+<p>先是查了一个Youtube视频教程，下载了一个Beta版本的SSR软件。结果发现确实需要付费，25块钱一个月。不值得，果断回溯。</p>
+<p>发现Github中有一个iPhone翻墙教程，还挺详细的。其实就是通过电脑数据线，在手机上装一个老版本的SSR软件。</p>
+<p>下载软件之后，扫描服务器节点的二维码就能连上了。</p>
+<p>虽然寥寥几句话，但确实也花了我40来分钟的时间。期间一直都很想找小伙伴求助，但想想这个事情也挺繁琐的，估计也没有一键解决的方案；更何况我都是要当程序员的人了，这么点难题还要找人帮忙，以后在职场上怎么混。于是咬咬牙确实也被我搞出来了。</p>
+<p>这倒也不是个人英雄主义什么的，该请教别人的时候还是要问的。</p>
+<p>以上。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/12/March10%E6%9D%82%E8%AE%B0/" data-id="ck7osjkpu00007svl5mdi7eub" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-基础算法杂记第一篇" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/12/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E6%9D%82%E8%AE%B0%E7%AC%AC%E4%B8%80%E7%AF%87/" class="article-date">
+  <time datetime="2020-03-12T13:26:13.432Z" itemprop="datePublished">2020-03-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/12/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E6%9D%82%E8%AE%B0%E7%AC%AC%E4%B8%80%E7%AF%87/">基础算法杂记第一篇</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文是基础算法系列第一篇文章。文中包含7个算法实现，大部分题目出自剑指offer，难度都是偏简单的题型，但也有一些有意思的思路在其中。</p>
+<ol>
+<li>JDK中实现的二分查找算法</li>
+</ol>
+<ul>
+<li>除以二以右移1位代替</li>
+<li>下标的变化处理放在前面，分支的判断放在后面</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 该方法为私有方法，是内部调用，故没有边界检查</span><br><span class="line">private static int binarySearch0(int[] a, int fromIndex, int toIndex,</span><br><span class="line">                                 int key) &#123;</span><br><span class="line">    int low &#x3D; fromIndex;</span><br><span class="line">    int high &#x3D; toIndex - 1;</span><br><span class="line"></span><br><span class="line">    while (low &lt;&#x3D; high) &#123;</span><br><span class="line">        int mid &#x3D; (low + high) &gt;&gt;&gt; 1;</span><br><span class="line">        int midVal &#x3D; a[mid];</span><br><span class="line"></span><br><span class="line">        if (midVal &lt; key)</span><br><span class="line">            low &#x3D; mid + 1;</span><br><span class="line">        else if (midVal &gt; key)</span><br><span class="line">            high &#x3D; mid - 1;</span><br><span class="line">        else</span><br><span class="line">            return mid; &#x2F;&#x2F; key found</span><br><span class="line">    &#125;</span><br><span class="line">    return -(low + 1);  &#x2F;&#x2F; key not found.</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<ol start="2">
+<li>建立二叉树<br>输入一个层序遍历的结果数组，输出一个二叉树的根节点。若节点为空，则数组中使用Integer.MAX_VALUE表示。</li>
+</ol>
+<ul>
+<li>使用递归的方法实现。</li>
+<li>新建一个递归函数，传递下标的做法很典型。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public static TreeNode buildUpTree(int[] arr) &#123;</span><br><span class="line">    TreeNode root &#x3D; buildUpTree(arr, 0);</span><br><span class="line">    return root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private static TreeNode buildUpTree(int[] arr, int i) &#123;</span><br><span class="line">    TreeNode cur;</span><br><span class="line"></span><br><span class="line">    if (i &lt; arr.length) &#123;</span><br><span class="line">        if (arr[i] &#x3D;&#x3D; Integer.MAX_VALUE)</span><br><span class="line">            return null;</span><br><span class="line">        cur &#x3D; new TreeNode(arr[i]);</span><br><span class="line">        cur.left &#x3D; buildUpTree(arr, 2 * i + 1);</span><br><span class="line">        cur.right &#x3D; buildUpTree(arr, 2 * i + 2);</span><br><span class="line">        return cur;</span><br><span class="line">    &#125;</span><br><span class="line">    return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<ol start="3">
+<li>面试题21：调整数组顺序使奇数位于偶数前面</li>
+</ol>
+<ul>
+<li>只需要一层循环，且在最外层规定循环条件。</li>
+<li>如果满足条件，直接continue进入下一个。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public static int[] exchange(int[] nums) &#123;</span><br><span class="line">        int i &#x3D; 0, j &#x3D; nums.length - 1;  &#x2F;&#x2F; two pointers</span><br><span class="line">        int tmp;</span><br><span class="line">        while (i &lt; j &amp;&amp; i &lt; nums.length - 1) &#123;</span><br><span class="line">            if (nums[i] % 2 &#x3D;&#x3D; 1) &#123; &#x2F;&#x2F; 如果nums[i]是个奇数，则忽略</span><br><span class="line">                i++;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            if (nums[j] % 2 &#x3D;&#x3D; 0) &#123; &#x2F;&#x2F; 如果nums[j]是个偶数，则忽略</span><br><span class="line">                j--;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            tmp &#x3D; nums[i];</span><br><span class="line">            nums[i] &#x3D; nums[j];</span><br><span class="line">            nums[j] &#x3D; tmp;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        return nums;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<ol start="4">
+<li>面试题52：两个链表节点的第一个公共节点</li>
+</ol>
+<p>做法一：Set保存一个链表的节点，然后用另一个链表的节点循环核实。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public ListNode getIntersectionNode(ListNode headA, ListNode headB) &#123;</span><br><span class="line">        HashSet&lt;ListNode&gt; set &#x3D; new HashSet&lt;&gt;();</span><br><span class="line">        while (headA !&#x3D; null) &#123;</span><br><span class="line">            set.add(headA);</span><br><span class="line">            headA &#x3D; headA.next;</span><br><span class="line">        &#125;</span><br><span class="line">        while(headB !&#x3D; null) &#123;</span><br><span class="line">            if(set.contains(headB)) &#123;</span><br><span class="line">                return headB;</span><br><span class="line">            &#125;</span><br><span class="line">            headB &#x3D; headB.next;</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>做法二：双指针法的做法很有意思，其中涉及了一个数学关系：A’ + R = A ; B’ + R = B ; A’ + R + B’ = A + B’ = A’ + B ; 其中 R 是重复部分。A‘ 和 B’ 是各链表的开头不重复的部分。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public ListNode getIntersectionNode_2pointers(ListNode headA, ListNode headB) &#123;</span><br><span class="line">       if (headA &#x3D;&#x3D; null || headB &#x3D;&#x3D; null) return null;</span><br><span class="line">       ListNode pA &#x3D; headA, pB &#x3D; headB;</span><br><span class="line">       while (pA !&#x3D; pB) &#123;</span><br><span class="line">           if (pA &#x3D;&#x3D; null)</span><br><span class="line">               pA &#x3D; headB;</span><br><span class="line">           else</span><br><span class="line">               pA &#x3D; pA.next;</span><br><span class="line">           if (pB &#x3D;&#x3D; null)</span><br><span class="line">               pB &#x3D; headA;</span><br><span class="line">           else</span><br><span class="line">               pB &#x3D; pB.next;</span><br><span class="line">       &#125;</span><br><span class="line">       return pA;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<ol start="5">
+<li>面试题15：二进制中1的个数</li>
+</ol>
+<ul>
+<li>按位与操作，和1相与。操作符为&amp;</li>
+<li>右移操作，操作符为&gt;&gt;=</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public static int hammingWeight(int n) &#123;</span><br><span class="line">        int count &#x3D; 0;</span><br><span class="line">        while (n &gt; 0) &#123;</span><br><span class="line">            if ((n &amp; 1) &#x3D;&#x3D; 1)</span><br><span class="line">                count++;</span><br><span class="line">            n &gt;&gt;&#x3D; 1; &#x2F;&#x2F; 左边的用原有标志位补充，右边超出的部分舍弃。</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>6.1 面试题06：从头到尾打印链表</p>
+<p>看到逆序输出，第一反应就是栈。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public int[] reversePrint(ListNode head) &#123;</span><br><span class="line">       &#x2F;&#x2F; use stack</span><br><span class="line">       Stack&lt;ListNode&gt; stack &#x3D; new Stack&lt;&gt;();</span><br><span class="line">       while (head !&#x3D; null) &#123;</span><br><span class="line">           stack.push(head);</span><br><span class="line">           head &#x3D; head.next;</span><br><span class="line">       &#125;</span><br><span class="line">       int[] result &#x3D; new int[stack.size()];</span><br><span class="line">       int index &#x3D; 0;</span><br><span class="line">       while (!stack.isEmpty()) &#123;</span><br><span class="line">           result[index] &#x3D; stack.pop().val;</span><br><span class="line">           index++;</span><br><span class="line">       &#125;</span><br><span class="line">       return result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>6.2 面试题24：反转链表</p>
+<ul>
+<li>如果从栈中取出直接用，那么会保留原来的指针</li>
+<li>因此也可以这样写：先把取出节点的后继置为空，然后再加入新的链表</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public static ListNode reverseList(ListNode head) &#123;</span><br><span class="line">       if(head &#x3D;&#x3D; null)</span><br><span class="line">           return head;</span><br><span class="line">       &#x2F;&#x2F; use stack</span><br><span class="line">       Stack&lt;ListNode&gt; stack &#x3D; new Stack&lt;&gt;();</span><br><span class="line">       while (head !&#x3D; null) &#123;</span><br><span class="line">           stack.push(head);</span><br><span class="line">           head &#x3D; head.next;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       head &#x3D; stack.pop();</span><br><span class="line">       ListNode cur &#x3D; head;</span><br><span class="line"></span><br><span class="line">       while (!stack.isEmpty()) &#123;</span><br><span class="line">           &#x2F;&#x2F; 如果从栈中取出直接用，那么会保留原来的指针</span><br><span class="line">           cur.next &#x3D; new ListNode(stack.pop().val); </span><br><span class="line">           &#x2F;&#x2F; 因此也可以这样写：先把取出节点的后继置为空，然后再加入新的链表</span><br><span class="line">           &#x2F;&#x2F; stack.peek().next &#x3D; null; </span><br><span class="line">           &#x2F;&#x2F; cur.next &#x3D; stack.pop();</span><br><span class="line">           cur &#x3D; cur.next;</span><br><span class="line">       &#125;</span><br><span class="line">       return head;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/12/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E6%9D%82%E8%AE%B0%E7%AC%AC%E4%B8%80%E7%AF%87/" data-id="ck7osjkpz00017svlciqcfise" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-浅谈二叉树的DFS和BFS" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/08/%E6%B5%85%E8%B0%88%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84DFS%E5%92%8CBFS/" class="article-date">
+  <time datetime="2020-03-08T00:24:25.000Z" itemprop="datePublished">2020-03-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/08/%E6%B5%85%E8%B0%88%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84DFS%E5%92%8CBFS/">我的第一篇博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="树的遍历方法"><a href="#树的遍历方法" class="headerlink" title="树的遍历方法"></a>树的遍历方法</h3><p>树的遍历方法总得来说有两种，深度优先遍历和广度优先遍历。这两种方法都可以用来解决大部分树的算法题。本文想要总结一下这两种方法的区别和联系。</p>
+<h3 id="树的广度优先遍历"><a href="#树的广度优先遍历" class="headerlink" title="树的广度优先遍历"></a>树的广度优先遍历</h3><p>广度优先遍历，顾名思义，是指按照深度依次向下，每次都会进行横向的处理。广度优先遍历也不是一定会使用队列的，使用的数据结构并不能解决算法是一个DFS还是一个BFS，两者最本质的区别在于BFS是横向处理节点的，每次都会把与当前节点相关联的节点加入数据结构中，而DFS是纵向处理的，对每个节点都会沿着路径一路走到空为止，然后再回退。</p>
+<p>广度优先遍历的处理流程如下：<br>    1. 根节点入队\栈<br>    2. 进入循环，退出条件为队列为空。<br>    [2.1 对当前的层次进行循环操作][层序遍历专属]<br>        2.2 出队<br>        2.3 如果出队的节点有左孩子，则加入队列<br>        2.4 如果出队的节点有右孩子，则加入队列</p>
+<p>如果是层序遍历，那么广度优先遍历会是双重循环，而先序/中序/后序遍历，只需一层循环即可。也很能理解为什么层序遍历需要使用两层循环，因为这样的做法可以保证每个外层循环处理一层的节点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static List&lt;List&lt;Integer&gt;&gt; levelOrder( TreeNode root) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; result &#x3D; new LinkedList&lt;&gt;();</span><br><span class="line">        if(root &#x3D;&#x3D; null)</span><br><span class="line">            return result;</span><br><span class="line">        Queue&lt; TreeNode&gt; queue &#x3D; new LinkedList&lt;&gt;();</span><br><span class="line">        queue.add(root);</span><br><span class="line">        while (!queue.isEmpty()) &#123;</span><br><span class="line">            int n &#x3D; queue.size();</span><br><span class="line">            List&lt;Integer&gt; layer &#x3D; new LinkedList&lt;&gt;();</span><br><span class="line">            for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">                layer.add(queue.peek().val);</span><br><span class="line">                root &#x3D; queue.poll();</span><br><span class="line">                if (root.left !&#x3D; null)</span><br><span class="line">                    queue.add(root.left);</span><br><span class="line">                if (root.right !&#x3D; null)</span><br><span class="line">                    queue.add(root.right);</span><br><span class="line">            &#125;</span><br><span class="line">            result.add(layer);</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>使用层序遍历的思路可以解决很多问题：比如剑指Offer中的第27题，二叉树的镜像；第55题，求二叉树的深度。其中二叉树的镜像是在原始代码的内层循环的最后加入了swap交换，即针对当前节点交换它的左右孩子。由于每次都是交换孩子节点，所以父亲节点的处理顺序并不重要。（因为当前节点的孩子节点进行交换之后，势必会影响孩子节点被处理的顺序。而这个对本题的结果没有影响。）二叉树的深度，就是叶子节点的最大深度。用层序遍历的方式，也可以求出maxDepth。因为层序遍历每次处理一层节点，因此使用一个记录变量res，每次内层循环迭代结束，res就自增，然后进入下一层。</p>
+<p>树的后序遍历是先序/中序/后序这三种遍历中最复杂的，它使用广度优先搜索的算法解析如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public void posOrder(Node head) &#123;</span><br><span class="line">        if (head &#x3D;&#x3D; null) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        Stack&lt;Node&gt; s1 &#x3D; new Stack&lt;Node&gt;();</span><br><span class="line">        Stack&lt;Node&gt; s2 &#x3D; new Stack&lt;Node&gt;();</span><br><span class="line">        s1.push(head);</span><br><span class="line">        while (!s1.isEmpty()) &#123;</span><br><span class="line">            Node cur &#x3D; s1.pop();</span><br><span class="line">            s2.push(cur);</span><br><span class="line">            if (cur.left !&#x3D; null) &#123;</span><br><span class="line">                s1.push(cur.left);</span><br><span class="line">            &#125;</span><br><span class="line">            if (cur.right !&#x3D; null) &#123;</span><br><span class="line">                s1.push(cur.right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        while (!s2.isEmpty()) &#123;</span><br><span class="line">            Node cur &#x3D; s2.pop();</span><br><span class="line">            System.out.println(cur.val);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>树的后序遍历需要借助两个栈，一个负责最初的加入节点，一个负责结果的逆置，分别设为s1和s2。为什么说s2做的事是逆置？因为最初加入s1时的节点顺序是先左后右，故s1弹出的顺序就会是先右后左。而正常压入s2之后，再弹出的顺序反而又变成了先左后右了，与后序遍历的“左、右、中”的优先级一致。</p>
+<p>那么，为什么根节点是最后输出的呢？因为比起它的孩子节点，根节点总是最先被s1弹出的，也是最先被s2压入的。换句话说，层次越靠上层的节点，越早被s1弹出，在s2中的位置也就越靠近底层。</p>
+<h3 id="深度优先遍历"><a href="#深度优先遍历" class="headerlink" title="深度优先遍历"></a>深度优先遍历</h3><p>如果你使用递归来求解树的问题，其实天然就使用了深度优先遍历的方法。深度优先遍历，常用栈作为节点路径的存储结构，因为栈的天然属性符合深度优先遍历的特色，即FILO（First In Last Out）。具体到树的算法中，深度优先遍历总是从根节点开始，然后把子节点压入栈中。一般习惯的处理方式是先左后右（无论是先序、中序还是后序，改变的只是根节点的处理顺序，但左子节点始终在右节点之前处理）。</p>
+<p>先序遍历和中序遍历有一点需要注意的地方，那就是中序遍历和先序遍历都既可以用广度优先遍历求解，也可以用深度优先遍历求解。广度优先遍历就是每次都会同时考察当前节点的左子树和右子树，并将其加入队列/栈。而深度优先遍历则是在当前节点不为空的情况下，沿着树一路向左走到底，直到子节点为空；然后将栈顶节点出栈（这时它就是最靠左的节点），将其赋值为它的右孩子；然后继续进行之前的向左走循环。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**二叉树的非递归中序遍历*&#x2F;</span><br><span class="line">public void inOrder(Node head) &#123;</span><br><span class="line">        if (head &#x3D;&#x3D; null) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        Stack&lt;Node&gt; s &#x3D; new Stack&lt;Node&gt;();</span><br><span class="line">        while (!s.isEmpty() || head !&#x3D; null) &#123;</span><br><span class="line">            if (head !&#x3D; null) &#123;</span><br><span class="line">                s.push(head);</span><br><span class="line">                head &#x3D; head.left;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                head &#x3D; s.pop();</span><br><span class="line">                System.out.println(head.val);</span><br><span class="line">                head &#x3D; head.right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/08/%E6%B5%85%E8%B0%88%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84DFS%E5%92%8CBFS/" data-id="ck7osjkq000027svl6tzs0oal" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/" rel="tag">树的遍历</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/" rel="tag">树的遍历</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/" style="font-size: 10px;">树的遍历</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/12/%E6%B5%85%E8%B0%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%AD%E9%82%A3%E4%BA%9B%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E6%A6%82%E5%BF%B5/">浅谈数据结构中那些容易混淆的概念</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/12/March10%E6%9D%82%E8%AE%B0/">March10杂记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/12/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E6%9D%82%E8%AE%B0%E7%AC%AC%E4%B8%80%E7%AF%87/">基础算法杂记第一篇</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/08/%E6%B5%85%E8%B0%88%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84DFS%E5%92%8CBFS/">我的第一篇博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
