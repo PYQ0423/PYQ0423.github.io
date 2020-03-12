@@ -64,6 +64,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-March12杂记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/12/March12%E6%9D%82%E8%AE%B0/" class="article-date">
+  <time datetime="2020-03-12T13:52:08.311Z" itemprop="datePublished">2020-03-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/12/March12%E6%9D%82%E8%AE%B0/">March12杂记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天是一年一度的植树节，记得小学的时候植树节还会跑出去种树呢，是个郊游的好机会。</p>
+<p>不过今天其实又是学习的一天。找工作真是残酷，把你的无能放在太阳下暴晒，然后你发现没有办法只能变强。</p>
+<p>JAVA、操作系统、数据库都已经挨个问过了，第三轮一定会问网络。字节跳动公司测开岗的难度还是挺高的，对基础知识问得很深，算法也不是傻缺难度，至少也是个Mediem。</p>
+<p>今天算法的部分看了图的、树整理了一半，哈希整理完了，参考书是《数据结构与算法分析 JAVA语言描述》。这本书写得很好，一来它里面大部分不是伪代码，而是真实的JAVA代码；二来它经常会结合JDK的库来说算法和数据结构，就很有意思。</p>
+<p>今天看算法书上写二叉排序树的删除算法，对递归又有新的认识。递归不仅要定量地理解，也要定性地理解。递归，就是自己调用自己，所以返回是属于同一个类型。我原本总是沉浸在定量中，去一层一层思考递归到第几层了，逻辑对不对。但实际上，只用考虑返回的这个值是个什么含义，就可以了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> BinaryNode&lt;AnyType&gt; <span class="title">remove</span><span class="params">(AnyType x, BinaryNode&lt;AnyType&gt; t)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (t == <span class="keyword">null</span>)</span><br><span class="line">           <span class="keyword">return</span> t;</span><br><span class="line">       <span class="keyword">int</span> compareResult = x.compareTo(t.element);</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (compareResult &lt; <span class="number">0</span>)</span><br><span class="line">           t.left = remove(x, t.left);</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">if</span> (compareResult &gt; <span class="number">0</span>)</span><br><span class="line">           t.right = remove(x, t.right);</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">if</span> (t.left != <span class="keyword">null</span> &amp;&amp; t.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">           t.element = findMin(t.right).element;</span><br><span class="line">           t.right = remove(t.element, t.right);</span><br><span class="line">       &#125; <span class="keyword">else</span></span><br><span class="line">           t = (t.left != <span class="keyword">null</span>) ? t.left : t.right;</span><br><span class="line">       <span class="keyword">return</span> t;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>瞧这if else if else的结构，一看就是事先把情况都分析清楚了。事实上执行分为3大类型：向左走、向右走和找到。而找到之后，根据其没有孩子/有一个孩子/有两个孩子，又可以分为三种情况，其中第一种和第二种情况在代码里进行了合并。</p>
+<p>非常值得一提的是<code>t.right = remove(t.element, t.right);</code> 这句代码。是个递归调用没错，但是理解它的更好的方式是从含义上理解，由于remove方法实现的功能就是从某棵树中删除某个节点，因此我们可以直接拿来使用，并赋给当前节点的右子树。</p>
+<p>JAVA并发编程，看了第三章共享对象。《JAVA并发编程》这本书写得极好，原本死记硬背的零零散散的知识，可以借助书上的逻辑给串起来。</p>
+<p>作为一个程序员，总是要假设最坏的情况会发生。就像是并发编程里的竞争条件，或是</p>
+<p>《图解HTTP》看了第一章和第二章，感觉最大的收获是理解了HTTP请求和响应的机理。然后才明白为什么面试喜欢问请求的方法和响应的状态码，这两个确实很重要，就像谈判时候两个人的立场，旗帜鲜明。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/12/March12%E6%9D%82%E8%AE%B0/" data-id="ck7otap700000fwvl9qe7h3qf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-浅谈数据结构中那些容易混淆的概念" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/12/%E6%B5%85%E8%B0%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%AD%E9%82%A3%E4%BA%9B%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E6%A6%82%E5%BF%B5/" class="article-date">
@@ -391,6 +439,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/03/12/March12%E6%9D%82%E8%AE%B0/">March12杂记</a>
+          </li>
         
           <li>
             <a href="/2020/03/12/%E6%B5%85%E8%B0%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%AD%E9%82%A3%E4%BA%9B%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E6%A6%82%E5%BF%B5/">浅谈数据结构中那些容易混淆的概念</a>
